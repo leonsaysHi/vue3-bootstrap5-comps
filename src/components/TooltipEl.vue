@@ -1,9 +1,9 @@
 <template>
   <div class="d-inline-flex">
-    <div 
-      ref="referenceRef" 
+    <div
+      ref="referenceRef"
       class="reference"
-      @mouseenter="show" 
+      @mouseenter="show"
       @mouseleave="hide"
     >
       <slot></slot>
@@ -20,15 +20,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useFloating, offset, arrow } from '@floating-ui/vue'
 
-const props = defineProps({
-    placement: {
-    type: String,
-    default: 'top',
-  },
+interface IProps {
+  placement?: 'top' | 'right' | 'bottom' | 'left'
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  placement: 'top'
 })
 
 const referenceRef = ref(null)
@@ -39,7 +40,7 @@ const { floatingStyles, middlewareData, update } = useFloating(
   floatingRef,
   {
     placement: props.placement,
-    middleware: [offset(6), arrow({ element: floatingArrow, padding: 5 })],
+    middleware: [offset(6), arrow({ element: floatingArrow, padding: 5 })]
   }
 )
 const doShow = ref(false)
@@ -48,7 +49,7 @@ const arrowStyles = computed(() => {
     top: 'bottom',
     right: 'left',
     bottom: 'top',
-    left: 'right',
+    left: 'right'
   }[props.placement.split('-')[0]]
 
   return {
@@ -61,7 +62,7 @@ const arrowStyles = computed(() => {
       middlewareData.value.arrow?.y != null
         ? `${middlewareData.value.arrow.y}px`
         : '',
-    [staticSide]: '-4px',
+    [staticSide]: '-4px'
   }
 })
 const show = () => {

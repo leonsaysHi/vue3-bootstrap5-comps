@@ -9,6 +9,9 @@
     ></typeahead-el>
     <div>Selected: {{ selectedValue }}</div>
     <hr />
+    <h2>Tooltip</h2>
+    <p>Nulla <tooltip-el><u>volutpat</u><template #content>Tooltip content</template></tooltip-el> vitae massa eu suscipit.</p>
+    <hr />
     <h2>Modal</h2>
     <button type="button" class="btn btn-light" @click="showModal = true">Show modal</button>
     <modal-el v-model="showModal" title="Modal title">Modal body</modal-el>
@@ -40,6 +43,7 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import TypeaheadEl from '@/TypeaheadEl.vue'
+import TooltipEl from '@/TooltipEl.vue'
 import ModalEl from '@/ModalEl.vue'
 import FormCheck from '@/FormCheck.vue'
 import FormCheckGroup from '@/FormCheckGroup.vue'
