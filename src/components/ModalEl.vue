@@ -5,10 +5,13 @@
       tabindex="-1"
       class="modal"
       data-bs-backdrop="static"
-      :class="`${containerClass} modal-${size} ${isAnimated ? 'fade' : ''}`"
-      :aria-hidden="!props.value || !props.isShown"
+      :class="[containerClass, `modal-${size}`, isAnimated && 'fade']"
+      :aria-hidden="!props.modelValue || !props.isShown"
     >
-      <div :class="`modal-dialog ${isCentered ? 'modal-dialog-centered' : ''}`">
+      <div
+        class="'modal-dialog'"
+        :class="[isCentered && 'modal-dialog-centered']"
+      >
         <div class="modal-content">
           <template v-if="!hideHeader && title">
             <div class="modal-header" :class="headerClass">
@@ -73,7 +76,8 @@
                     }"
                   >
                     <button
-                      :class="`btn btn-${cancelVariant}`"
+                      class="btn"
+                      :class="[`btn-${cancelVariant}`]"
                       :disabled="cancelDisabled || isBusy"
                       @click="handleCancel"
                     >
@@ -94,7 +98,8 @@
                     }"
                   >
                     <button
-                      :class="`btn btn-${okVariant} d-flex align-items-center gap-2`"
+                      class="btn d-flex align-items-center gap-2"
+                      :class="[`btn-${okVariant}`]"
                       :disabled="okDisabled || isBusy"
                       @click="handleOk"
                     >
